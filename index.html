@@ -745,7 +745,6 @@
 
           <div class="hint-row">
             <span class="hint-pill">Tip: Save this page as a bookmark ⭐</span>
-          
           </div>
 
           <div id="error" class="error"></div>
@@ -865,7 +864,7 @@
       BASE_CALENDAR_URL:
         "https://calendar.google.com/calendar/embed?src=e1b18059bc35529d296d6dbef5000ebc4465f94096e5152345365e506fd1e42b%40group.calendar.google.com&ctz=America%2FToronto",
 
-      // Rotating Doug photos. Files should be in the repo root as photo1.jpeg, photo2.jpeg, etc.
+      // Rotating Doug photos. Files should be in the repo root as Photo1.jpeg, Photo2.jpeg, etc.
       PHOTO_COUNT: 10, // 🔧 change this if you add more or fewer photos
       PHOTO_PREFIX: "Photo",
       PHOTO_EXT: ".jpeg",
@@ -888,7 +887,7 @@
     /* Rotating photos */
 
     function getRandomPhotoPath() {
-      const count = Math.max(1, CONFIG.10 || 1);
+      const count = Math.max(1, CONFIG.PHOTO_COUNT || 1);
       const index = Math.floor(Math.random() * count) + 1; // 1..count
       return CONFIG.PHOTO_PREFIX + index + CONFIG.PHOTO_EXT;
     }
