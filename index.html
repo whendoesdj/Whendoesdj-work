@@ -13,17 +13,17 @@
     :root {
       /* Retro sunset palette */
       --sunset-orange1: #BE5103;
+      --sunset-orange2: #B7410E;
       --sunset-gold:   #FFCE1B;
       --sunset-teal:   #069494;
-      --sunset-orange2:#B7410E;
 
-      /* Theme (dark but warm, not pure black) */
-      --bg: #18100C;          /* page background */
-      --card: #21140E;        /* main card background */
-      --card-soft: #261911;   /* softer card variant */
-      --text: #FDFCF8;
-      --muted: #C4B8B0;
-      --border-subtle: rgba(248, 250, 252, 0.14);
+      /* Theme – dark teal base, bright accents */
+      --bg: #0F1A1A;          /* page background */
+      --card: #132526;        /* main card background */
+      --card-soft: #173033;   /* softer card */
+      --text: #F9FAFB;
+      --muted: #9CA3AF;
+      --border-subtle: rgba(148, 163, 184, 0.35);
       --danger: #fb7185;
     }
 
@@ -39,8 +39,8 @@
       display: flex;
       justify-content: center;
       background:
-        radial-gradient(circle at top left, #2B1610 0%, #18100C 55%),
-        radial-gradient(circle at bottom right, #102322 0%, #18100C 60%);
+        radial-gradient(circle at top left, #173033 0%, #0F1A1A 55%),
+        radial-gradient(circle at bottom right, #081516 0%, #0F1A1A 60%);
       color: var(--text);
     }
 
@@ -77,12 +77,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #180903;
+      color: #0F0A05;
       font-weight: 700;
       font-size: 1.05rem;
       box-shadow:
-        0 0 0 1px rgba(24, 16, 12, 0.9),
-        0 8px 18px rgba(24, 16, 12, 0.9);
+        0 0 0 1px rgba(8, 10, 10, 0.9),
+        0 8px 18px rgba(0, 0, 0, 0.85);
     }
 
     .logo-text-main {
@@ -104,8 +104,8 @@
       font-size: 0.8rem;
       padding: 0.35rem 0.8rem;
       border-radius: 999px;
-      background-color: #132322;
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      background-color: #081516;
+      border: 1px solid rgba(148, 163, 184, 0.55);
       color: var(--muted);
       display: flex;
       align-items: center;
@@ -129,8 +129,8 @@
       border-radius: 1.5rem;
       padding: 1.9rem 1.8rem 1.6rem;
       box-shadow:
-        0 24px 46px rgba(12, 7, 3, 0.98),
-        0 0 0 1px rgba(37, 23, 15, 0.9);
+        0 24px 46px rgba(0, 0, 0, 0.96),
+        0 0 0 1px rgba(15, 23, 42, 0.7);
       margin-inline: auto;
     }
 
@@ -156,7 +156,7 @@
       font-size: 0.75rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #18100C;
+      color: #111827;
       background-color: var(--sunset-gold);
       border: 1px solid #eab308;
     }
@@ -212,13 +212,13 @@
       height: 60px;
       border-radius: 999px;
       padding: 2px;
-      background-color: var(--sunset-teal);
+      background: var(--sunset-teal);
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow:
-        0 0 0 1px rgba(12, 8, 4, 1),
-        0 10px 22px rgba(12, 8, 4, 0.95);
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 10px 22px rgba(0, 0, 0, 0.9);
     }
 
     .profile-photo {
@@ -226,7 +226,7 @@
       height: 100%;
       border-radius: inherit;
       overflow: hidden;
-      background: #120A06;
+      background: #020617;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -263,7 +263,7 @@
       padding: 0.78rem 0.9rem;
       border-radius: 0.9rem;
       border: 1px solid var(--border-subtle);
-      background: #120A06;
+      background: #071213;
       color: var(--text);
       font-size: 0.95rem;
       outline: none;
@@ -275,15 +275,15 @@
     }
 
     input[type="password"]::placeholder {
-      color: #8b735f;
+      color: #64748b;
     }
 
     input[type="password"]:focus {
       border-color: var(--sunset-teal);
       box-shadow:
-        0 0 0 1px rgba(6, 148, 148, 0.85),
-        0 10px 24px rgba(12, 8, 4, 0.98);
-      background: #140C08;
+        0 0 0 1px rgba(6, 148, 148, 0.8),
+        0 10px 24px rgba(0, 0, 0, 0.9);
+      background: #081516;
       transform: translateY(-1px);
     }
 
@@ -294,7 +294,7 @@
       border-radius: 0.9rem;
       border: 0;
       background-color: var(--sunset-orange2);
-      color: #FDFCF8;
+      color: #F9FAFB;
       font-weight: 600;
       font-size: 0.96rem;
       cursor: pointer;
@@ -304,23 +304,23 @@
       gap: 0.5rem;
       transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
       box-shadow:
-        0 16px 32px rgba(12, 8, 4, 0.98),
-        0 0 0 1px rgba(24, 16, 12, 1);
+        0 16px 32px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
     }
 
     button:hover {
       transform: translateY(-1px);
       filter: brightness(1.05);
       box-shadow:
-        0 20px 40px rgba(12, 8, 4, 1),
-        0 0 0 1px rgba(24, 16, 12, 1);
+        0 20px 40px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
     }
 
     button:active {
       transform: translateY(0);
       box-shadow:
-        0 11px 24px rgba(12, 8, 4, 0.98),
-        0 0 0 1px rgba(24, 16, 12, 1);
+        0 11px 24px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
     }
 
     button span.icon {
@@ -341,8 +341,8 @@
     .hint-pill {
       padding: 0.2rem 0.65rem;
       border-radius: 999px;
-      border: 1px dashed rgba(248, 250, 252, 0.45);
-      background-color: rgba(255, 206, 27, 0.14);
+      border: 1px dashed rgba(248, 250, 252, 0.4);
+      background-color: rgba(255, 206, 27, 0.12);
       color: var(--text);
     }
 
@@ -379,19 +379,20 @@
       border-radius: 1.4rem;
       padding: 0.9rem;
       box-shadow:
-        0 22px 46px rgba(12, 7, 3, 0.98),
-        0 0 0 1px rgba(37, 23, 15, 0.9);
+        0 22px 46px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
       display: flex;
       flex-direction: column;
       gap: 0.55rem;
       flex: 0 0 260px;
       max-width: 280px;
+      border: 1px solid rgba(6, 148, 148, 0.6);
     }
 
     .hero-photo-wrap {
       border-radius: 1.1rem;
       overflow: hidden;
-      background: #120A06;
+      background: #020617;
       aspect-ratio: 4 / 5;
       max-height: 380px;
       position: relative;
@@ -418,8 +419,8 @@
       border-radius: 1.4rem;
       padding: 1.1rem 1.3rem 1.05rem;
       box-shadow:
-        0 22px 46px rgba(12, 7, 3, 0.98),
-        0 0 0 1px rgba(37, 23, 15, 0.9);
+        0 22px 46px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
       display: flex;
       flex-direction: column;
       gap: 0.7rem;
@@ -432,7 +433,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--text);
+      color: var(--sunset-gold);
     }
 
     .schedule-subtitle {
@@ -455,8 +456,8 @@
       gap: 0.35rem;
       padding: 0.2rem 0.65rem;
       border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.18);
-      background-color: #120A06;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background-color: #081516;
     }
 
     .legend-dot {
@@ -465,9 +466,8 @@
       border-radius: 999px;
       background: var(--sunset-teal);
     }
-    .legend-dot.days { background: #22c55e; }
+    .legend-dot.days   { background: #4ade80; }            /* green */
     .legend-dot.nights { background: var(--sunset-orange1); }
-    /* no "off" dot anymore */
 
     .schedule-note {
       font-size: 0.78rem;
@@ -482,8 +482,8 @@
       border-radius: 1.4rem;
       padding: 1.05rem;
       box-shadow:
-        0 26px 54px rgba(12, 7, 3, 0.99),
-        0 0 0 1px rgba(37, 23, 15, 0.9);
+        0 26px 54px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
       display: flex;
       flex-direction: column;
       min-height: 520px;
@@ -516,8 +516,8 @@
       flex: 1;
       border-radius: 1.1rem;
       overflow: hidden;
-      border: 1px solid rgba(248, 250, 252, 0.16);
-      background-color: #151922;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background-color: #FFFFFF;
     }
 
     iframe {
@@ -545,8 +545,8 @@
       border-radius: 1.3rem;
       padding: 0.9rem 1rem;
       box-shadow:
-        0 18px 40px rgba(12, 7, 3, 0.98),
-        0 0 0 1px rgba(37, 23, 15, 0.9);
+        0 18px 40px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
@@ -557,7 +557,12 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--text);
+      color: var(--sunset-gold);
+    }
+
+    .weather-body {
+      font-size: 0.86rem;
+      color: var(--muted);
     }
 
     .weather-main {
@@ -583,11 +588,6 @@
       margin-top: 0.25rem;
     }
 
-    .weather-body {
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
     /* STATE: unlocked */
 
     body.unlocked #login-view {
@@ -598,7 +598,7 @@
       display: block;
     }
 
-    /* RESPONSIVE + mobile reorder (carousel under calendar) */
+    /* RESPONSIVE + mobile reorder (calendar first, then photos, then weather) */
 
     @media (max-width: 900px) {
       .container {
@@ -700,7 +700,7 @@
             <span class="highlight">DJ’s Work Schedule</span>
           </h1>
           <p class="subtitle">
-            Enter the family password to see when I’m on shift, on nights, or off.
+            Enter the family password to see when I’m on shift or on nights.
           </p>
 
           <div class="profile-block">
@@ -713,7 +713,7 @@
             <div>
               <div class="profile-text-main">Hi, it’s DJ 👋</div>
               <div class="profile-text-sub">
-                This page is just for family so you can quickly check when I’m working or off.
+                This page is just for family so you can quickly check when I’m working.
               </div>
             </div>
           </div>
@@ -772,7 +772,6 @@
                 <span class="legend-dot nights"></span>
                 <span>Night shifts</span>
               </div>
-              <!-- no off/vacation pill -->
             </div>
 
             <div class="schedule-note">
@@ -986,7 +985,7 @@
           const emoji = weatherIcon(cw.weathercode);
           const desc = weatherDescription(cw.weathercode);
 
-          loading.style.display = "none";
+          loading.textContent = "";
           main.style.display = "flex";
           extra.style.display = "block";
 
