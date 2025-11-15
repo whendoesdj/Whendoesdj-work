@@ -6,22 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Private schedule page for DJ's work shifts." />
 
+  <!-- Clean, modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --bg: #020617;
-      --card: #020617;
-      --accent: #38bdf8;
-      --accent2: #22c55e;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --danger: #fb7185;
-      --border-subtle: rgba(148, 163, 184, 0.35);
+      /* Light, calm dashboard palette */
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --card-soft: #f9fafb;
+      --accent: #0ea5e9;   /* sky blue */
+      --accent2: #22c55e;  /* green */
+      --text: #111827;     /* almost black */
+      --muted: #6b7280;    /* grey */
+      --danger: #dc2626;
+      --border-subtle: #e5e7eb;
+      --chip-bg: #eef2ff;
     }
 
     * {
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont,
+        "SF Pro Text", "Segoe UI", sans-serif;
     }
 
     body {
@@ -30,8 +36,8 @@
       display: flex;
       justify-content: center;
       background:
-        radial-gradient(circle at top left, #0f172a, #020617 55%),
-        radial-gradient(circle at bottom right, #1e293b, #020617 65%);
+        radial-gradient(circle at top left, #e5f3ff, #f3f4f6 55%),
+        radial-gradient(circle at bottom right, #e5e7eb, #f9fafb 70%);
       color: var(--text);
     }
 
@@ -39,18 +45,19 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1.25rem 1.5rem 1.75rem;
+      padding: 1.5rem 1.5rem 2.25rem;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
+
+    /* HEADER */
 
     .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 0.25rem;
     }
 
     .logo-lockup {
@@ -63,7 +70,7 @@
       width: 40px;
       height: 40px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #e0f2fe, #38bdf8);
+      background: radial-gradient(circle at 30% 20%, #e0f2fe, #0ea5e9);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -71,22 +78,22 @@
       font-weight: 800;
       font-size: 1.1rem;
       box-shadow:
-        0 0 0 1px rgba(15, 23, 42, 0.8),
-        0 10px 25px rgba(15, 23, 42, 0.9);
+        0 0 0 1px rgba(148, 163, 184, 0.5),
+        0 12px 24px rgba(15, 23, 42, 0.18);
     }
 
     .logo-text-main {
       font-size: 1rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #e5e7eb;
+      color: #020617;
     }
 
     .logo-text-sub {
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       color: var(--muted);
     }
 
@@ -94,9 +101,9 @@
       font-size: 0.8rem;
       padding: 0.3rem 0.75rem;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      color: var(--muted);
+      background: #e5f3ff;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #0f172a;
       display: flex;
       align-items: center;
       gap: 0.35rem;
@@ -110,32 +117,29 @@
       gap: 1.5rem;
     }
 
-    /* LOGIN VIEW */
+    /* LOGIN CARD */
 
     #login-view {
       width: 100%;
-      max-width: 440px;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 65%),
-                  radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.18), transparent 55%),
-                  #020617;
+      max-width: 460px;
+      background: var(--card);
       border-radius: 1.5rem;
-      padding: 1.8rem 1.5rem 1.6rem;
+      padding: 1.9rem 1.7rem 1.6rem;
       box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(148, 163, 184, 0.3);
+        0 22px 45px rgba(15, 23, 42, 0.12),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
+      margin-inline: auto;
       position: relative;
       overflow: hidden;
-      margin-inline: auto;
     }
 
     #login-view::before {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: -40%;
       background:
-        radial-gradient(circle at -10% 0%, rgba(56, 189, 248, 0.18), transparent 60%),
-        radial-gradient(circle at 110% 110%, rgba(16, 185, 129, 0.1), transparent 60%);
-      mix-blend-mode: screen;
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.18), transparent 55%),
+        radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.14), transparent 60%);
       opacity: 0.9;
       pointer-events: none;
     }
@@ -162,9 +166,9 @@
       font-size: 0.78rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: #1e293b;
+      background: #eff6ff;
+      border: 1px solid rgba(129, 140, 248, 0.5);
     }
 
     .mini-indicator {
@@ -173,7 +177,6 @@
       gap: 0.35rem;
       font-size: 0.75rem;
       color: var(--muted);
-      opacity: 0.95;
     }
 
     .mini-indicator-dot {
@@ -181,20 +184,21 @@
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
     }
 
     h1 {
       margin: 0 0 0.25rem;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       letter-spacing: 0.03em;
       display: flex;
       align-items: baseline;
       gap: 0.45rem;
+      color: #020617;
     }
 
     h1 span.highlight {
-      background: linear-gradient(120deg, #e0f2fe, #c4b5fd);
+      background: linear-gradient(120deg, #0ea5e9, #6366f1);
       -webkit-background-clip: text;
       color: transparent;
     }
@@ -221,18 +225,18 @@
       padding: 2px;
       background: conic-gradient(
         from 180deg,
-        #38bdf8,
+        #0ea5e9,
         #22c55e,
-        #a855f7,
+        #6366f1,
         #f97316,
-        #38bdf8
+        #0ea5e9
       );
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow:
-        0 0 0 1px rgba(15, 23, 42, 0.7),
-        0 10px 25px rgba(15, 23, 42, 0.9);
+        0 0 0 1px rgba(148, 163, 184, 0.6),
+        0 8px 22px rgba(15, 23, 42, 0.16);
     }
 
     .profile-photo {
@@ -240,7 +244,7 @@
       height: 100%;
       border-radius: inherit;
       overflow: hidden;
-      background: #020617;
+      background: #e5e7eb;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -256,6 +260,7 @@
     .profile-text-main {
       font-size: 0.9rem;
       font-weight: 500;
+      color: #0f172a;
     }
 
     .profile-text-sub {
@@ -276,7 +281,7 @@
       padding: 0.8rem 0.9rem;
       border-radius: 0.9rem;
       border: 1px solid var(--border-subtle);
-      background: rgba(15, 23, 42, 0.95);
+      background: #f9fafb;
       color: var(--text);
       font-size: 0.95rem;
       outline: none;
@@ -290,9 +295,9 @@
     input[type="password"]:focus {
       border-color: var(--accent);
       box-shadow:
-        0 0 0 1px rgba(56, 189, 248, 0.4),
-        0 12px 30px rgba(15, 23, 42, 0.9);
-      background: #020617;
+        0 0 0 1px rgba(14, 165, 233, 0.5),
+        0 12px 30px rgba(15, 23, 42, 0.1);
+      background: #ffffff;
       transform: translateY(-1px);
     }
 
@@ -303,7 +308,7 @@
       border-radius: 0.95rem;
       border: none;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #020617;
+      color: #f9fafb;
       font-weight: 600;
       font-size: 0.96rem;
       cursor: pointer;
@@ -313,23 +318,23 @@
       gap: 0.5rem;
       transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
       box-shadow:
-        0 14px 30px rgba(15, 23, 42, 0.95),
-        0 0 0 1px rgba(15, 23, 42, 0.5);
+        0 16px 35px rgba(15, 23, 42, 0.22),
+        0 0 0 1px rgba(15, 23, 42, 0.4);
     }
 
     button:hover {
       transform: translateY(-1px);
-      filter: brightness(1.04);
+      filter: brightness(1.03);
       box-shadow:
-        0 18px 38px rgba(15, 23, 42, 0.98),
-        0 0 0 1px rgba(15, 23, 42, 0.6);
+        0 20px 40px rgba(15, 23, 42, 0.28),
+        0 0 0 1px rgba(15, 23, 42, 0.45);
     }
 
     button:active {
       transform: translateY(0);
       box-shadow:
-        0 9px 20px rgba(15, 23, 42, 0.9),
-        0 0 0 1px rgba(15, 23, 42, 0.5);
+        0 10px 22px rgba(15, 23, 42, 0.2),
+        0 0 0 1px rgba(15, 23, 42, 0.4);
     }
 
     button span.icon {
@@ -344,15 +349,15 @@
       gap: 0.75rem;
       font-size: 0.78rem;
       color: var(--muted);
-      opacity: 0.95;
       flex-wrap: wrap;
     }
 
     .hint-pill {
       padding: 0.2rem 0.65rem;
       border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.7);
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      background: #eff6ff;
+      color: #1e293b;
     }
 
     .error {
@@ -363,13 +368,12 @@
     }
 
     .footnote {
-      margin-top: 1.2rem;
+      margin-top: 1.15rem;
       font-size: 0.72rem;
       color: var(--muted);
-      opacity: 0.85;
     }
 
-    /* SCHEDULE VIEW (after login) */
+    /* SCHEDULE VIEW */
 
     #schedule-view {
       display: none;
@@ -378,19 +382,19 @@
 
     .schedule-hero {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
       gap: 1.25rem;
       align-items: stretch;
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
     }
 
     .hero-photo-card {
-      background: rgba(2, 6, 23, 0.96);
+      background: var(--card);
       border-radius: 1.5rem;
-      padding: 0.9rem;
+      padding: 0.95rem;
       box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(148, 163, 184, 0.35);
+        0 16px 36px rgba(15, 23, 42, 0.12),
+        0 0 0 1px rgba(148, 163, 184, 0.3);
       display: flex;
       flex-direction: column;
       gap: 0.6rem;
@@ -399,13 +403,17 @@
     .hero-photo-wrap {
       border-radius: 1.25rem;
       overflow: hidden;
-      background: #020617;
+      background: #e5e7eb;
+      /* Keep your face nicely framed: portrait-ish ratio */
+      aspect-ratio: 4 / 5;
+      position: relative;
     }
 
     .hero-photo-wrap img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      max-height: 320px;
       object-fit: cover;
       display: block;
     }
@@ -416,12 +424,12 @@
     }
 
     .hero-copy-card {
-      background: rgba(2, 6, 23, 0.96);
+      background: var(--card);
       border-radius: 1.5rem;
       padding: 1.2rem 1.3rem 1.05rem;
       box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(148, 163, 184, 0.35);
+        0 16px 36px rgba(15, 23, 42, 0.12),
+        0 0 0 1px rgba(148, 163, 184, 0.3);
       display: flex;
       flex-direction: column;
       gap: 0.7rem;
@@ -430,8 +438,9 @@
     .schedule-title {
       font-size: 1.25rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
+      color: #0f172a;
     }
 
     .schedule-subtitle {
@@ -445,6 +454,7 @@
       gap: 0.5rem;
       font-size: 0.76rem;
       color: var(--muted);
+      margin-top: 0.2rem;
     }
 
     .legend-pill {
@@ -453,8 +463,8 @@
       gap: 0.35rem;
       padding: 0.2rem 0.6rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: #f3f4ff;
     }
 
     .legend-dot {
@@ -464,8 +474,8 @@
       background: #38bdf8;
     }
     .legend-dot.days { background: #22c55e; }
-    .legend-dot.nights { background: #a855f7; }
-    .legend-dot.off { background: #64748b; }
+    .legend-dot.nights { background: #6366f1; }
+    .legend-dot.off { background: #9ca3af; }
 
     .schedule-note {
       font-size: 0.78rem;
@@ -474,15 +484,15 @@
 
     .calendar-card {
       margin-top: 1rem;
-      background: rgba(2, 6, 23, 0.98);
+      background: var(--card);
       border-radius: 1.5rem;
       padding: 1rem;
       box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.9),
+        0 18px 40px rgba(15, 23, 42, 0.12),
         0 0 0 1px rgba(148, 163, 184, 0.35);
       display: flex;
       flex-direction: column;
-      min-height: 420px;
+      min-height: 520px;
     }
 
     .calendar-header {
@@ -490,7 +500,7 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 0.75rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       padding-inline: 0.15rem;
     }
 
@@ -499,6 +509,7 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      color: #0f172a;
     }
 
     .calendar-note {
@@ -511,8 +522,8 @@
       flex: 1;
       border-radius: 1.1rem;
       overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: #f3f4f6;
     }
 
     iframe {
@@ -523,7 +534,7 @@
     }
 
     .calendar-footer {
-      margin-top: 0.4rem;
+      margin-top: 0.45rem;
       font-size: 0.75rem;
       color: var(--muted);
       padding-inline: 0.2rem;
@@ -543,22 +554,23 @@
 
     @media (max-width: 960px) {
       .container {
-        padding-inline: 1.1rem;
+        padding-inline: 1.2rem;
       }
 
       .schedule-hero {
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .hero-photo-wrap img {
-        max-height: 260px;
+      .hero-photo-wrap {
+        aspect-ratio: 4 / 5;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .top-bar {
         flex-direction: column;
         align-items: flex-start;
+        gap: 0.4rem;
       }
 
       .timezone-pill {
@@ -566,11 +578,11 @@
       }
 
       #login-view {
-        padding-inline: 1.2rem;
+        padding-inline: 1.3rem;
       }
 
       .calendar-card {
-        padding-inline: 0.85rem;
+        padding-inline: 0.9rem;
       }
     }
   </style>
@@ -663,14 +675,14 @@
               <img id="profile-photo-large" src="" alt="Photo of DJ" />
             </div>
             <div class="hero-photo-caption">
-              Updated automatically from my work calendar. If something looks off, text me.
+              Pulled straight from my work calendar. If something looks wrong, assume I just haven’t updated it yet.
             </div>
           </aside>
 
           <section class="hero-copy-card">
             <div class="schedule-title">DJ’s Work Schedule</div>
             <div class="schedule-subtitle">
-              Quick way for family to see when I’m on days, nights, or off. Times are pulled directly from my Google Calendar.
+              Quick way to see when I’m on days, nights, or off. Times below are synced from Google Calendar.
             </div>
 
             <div class="legend-row">
@@ -689,8 +701,8 @@
             </div>
 
             <div class="schedule-note">
-              • On desktop, you’ll see a full month view.<br />
-              • On phones, the calendar switches to an easier-to-read agenda list.
+              • Month calendar below on all devices.<br />
+              • Tap/click an event for exact times.
             </div>
           </section>
         </div>
@@ -711,7 +723,7 @@
           </div>
 
           <div class="calendar-footer">
-            Tap or click any event to see the exact start and end times.
+            If the calendar doesn’t load properly, try rotating your phone or zooming out slightly.
           </div>
         </section>
       </section>
@@ -719,41 +731,57 @@
   </div>
 
   <script>
-    // ---- CONFIG: pulled from your current setup, no need to change unless you want to ----
+    // CONFIG – from your existing setup, no retyping needed.
     const CONFIG = {
       PASSWORD: "beautyswitch",
-      PROFILE_IMAGE_URL: "https://raw.githubusercontent.com/whendoesdj/whendoesdj-work/main/dj.jpeg",
-      BASE_CALENDAR_URL: "https://calendar.google.com/calendar/embed?src=e1b18059bc35529d296d6dbef5000ebc4465f94096e5152345365e506fd1e42b%40group.calendar.google.com&ctz=America%2FToronto"
+      PROFILE_IMAGE_URL:
+        "https://raw.githubusercontent.com/whendoesdj/whendoesdj-work/main/dj.jpeg",
+      BASE_CALENDAR_URL:
+        "https://calendar.google.com/calendar/embed?src=e1b18059bc35529d296d6dbef5000ebc4465f94096e5152345365e506fd1e42b%40group.calendar.google.com&ctz=America%2FToronto"
     };
 
-    // Apply config (image + calendar URLs)
-    function applyConfig() {
+    function setImages() {
       const small = document.getElementById("profile-photo-small");
       const large = document.getElementById("profile-photo-large");
-      const frame = document.getElementById("schedule-frame");
 
       if (CONFIG.PROFILE_IMAGE_URL) {
         if (small) small.src = CONFIG.PROFILE_IMAGE_URL;
         if (large) large.src = CONFIG.PROFILE_IMAGE_URL;
       }
+    }
 
-      if (frame && CONFIG.BASE_CALENDAR_URL) {
-        const isMobile = window.innerWidth < 768;
-        let url = CONFIG.BASE_CALENDAR_URL;
+    // Build calendar URL with extra params for color / clarity.
+    function buildCalendarUrl() {
+      let url = CONFIG.BASE_CALENDAR_URL || "";
+      if (!url) return "";
 
-        // Always set a dark background to blend with the site
-        const hasQuery = url.includes("?");
-        const join = hasQuery ? "&" : "?";
-        url += join + "bgcolor=%230b1120";
+      const hasQuery = url.includes("?");
+      const join = hasQuery ? "&" : "?";
 
-        // Mode: agenda on mobile, month on desktop
-        url += "&mode=" + (isMobile ? "AGENDA" : "MONTH");
+      // Light background, month view, hide some clutter, force a warm event color
+      url += join +
+        "bgcolor=%23f3f4f6" +
+        "&mode=MONTH" +
+        "&showTitle=0" +
+        "&showPrint=0" +
+        "&showTabs=1" +
+        "&showCalendars=0" +
+        "&showTz=0" +
+        "&wkst=1" +
+        "&color=%23F97316";
 
-        frame.src = url;
+      return url;
+    }
+
+    function setCalendarSrc() {
+      const frame = document.getElementById("schedule-frame");
+      if (!frame) return;
+      const built = buildCalendarUrl();
+      if (built) {
+        frame.src = built;
       }
     }
 
-    // Resize iframe height based on viewport
     function resizeCalendarFrame() {
       const frame = document.getElementById("schedule-frame");
       if (!frame) return;
@@ -761,21 +789,22 @@
       const vh = window.innerHeight || document.documentElement.clientHeight;
       const isNarrow = window.innerWidth < 768;
 
-      const desired = isNarrow ? vh * 0.65 : vh * 0.8;
-      const clamped = Math.max(360, Math.min(desired, 900));
+      // Taller on mobile for readability
+      const desired = isNarrow ? vh * 0.9 : vh * 0.75;
+      const clamped = Math.max(520, Math.min(desired, 900));
 
       frame.style.height = clamped + "px";
     }
 
-    // Simple front-end password gate
     const form = document.getElementById("password-form");
     const passwordInput = document.getElementById("password");
     const errorDiv = document.getElementById("error");
 
     function unlock() {
       document.body.classList.add("unlocked");
+      setCalendarSrc();
       resizeCalendarFrame();
-      applyConfig(); // ensure correct calendar mode for current viewport once visible
+      setImages(); // ensure large photo is set
     }
 
     form.addEventListener("submit", function (e) {
@@ -804,8 +833,8 @@
     });
 
     window.addEventListener("load", function () {
-      applyConfig(); // sets images + initial calendar URL
-      resizeCalendarFrame();
+      // show avatar on login immediately
+      setImages();
     });
 
     window.addEventListener("resize", function () {
