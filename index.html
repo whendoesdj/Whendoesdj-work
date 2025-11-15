@@ -745,7 +745,7 @@
 
           <div class="hint-row">
             <span class="hint-pill">Tip: Save this page as a bookmark ⭐</span>
-            <span>Don’t share the password outside the family.</span>
+          
           </div>
 
           <div id="error" class="error"></div>
@@ -888,7 +888,7 @@
     /* Rotating photos */
 
     function getRandomPhotoPath() {
-      const count = Math.max(1, CONFIG.PHOTO_COUNT || 1);
+      const count = Math.max(1, CONFIG.10 || 1);
       const index = Math.floor(Math.random() * count) + 1; // 1..count
       return CONFIG.PHOTO_PREFIX + index + CONFIG.PHOTO_EXT;
     }
