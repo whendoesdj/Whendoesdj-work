@@ -41,7 +41,7 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1.5rem;
+      padding: 1.25rem 1.5rem 1.75rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -53,7 +53,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
 
     .logo-lockup {
@@ -63,8 +63,8 @@
     }
 
     .logo-circle {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 20%, #e0f2fe, #38bdf8);
       display: flex;
@@ -108,7 +108,7 @@
 
     main {
       display: grid;
-      grid-template-columns: minmax(0, 380px) minmax(0, 1.3fr);
+      grid-template-columns: minmax(0, 400px) minmax(0, 1.4fr);
       gap: 1.5rem;
       align-items: stretch;
     }
@@ -131,10 +131,10 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at -10% 0%, rgba(56, 189, 248, 0.15), transparent 60%),
-        radial-gradient(circle at 110% 110%, rgba(16, 185, 129, 0.08), transparent 60%);
+        radial-gradient(circle at -10% 0%, rgba(56, 189, 248, 0.18), transparent 60%),
+        radial-gradient(circle at 110% 110%, rgba(16, 185, 129, 0.1), transparent 60%);
       mix-blend-mode: screen;
-      opacity: 0.8;
+      opacity: 0.9;
       pointer-events: none;
     }
 
@@ -196,16 +196,76 @@
     }
 
     h1 span.highlight {
-      background: linear-gradient(120deg, #e0f2fe, #a5b4fc);
+      background: linear-gradient(120deg, #e0f2fe, #c4b5fd);
       -webkit-background-clip: text;
       color: transparent;
     }
 
     .subtitle {
-      margin: 0 0 1.25rem;
+      margin: 0 0 1.1rem;
       font-size: 0.95rem;
       color: var(--muted);
-      max-width: 320px;
+      max-width: 340px;
+    }
+
+    /* Profile block */
+
+    .profile-block {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .profile-photo-ring {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      padding: 2px;
+      background: conic-gradient(
+        from 180deg,
+        #38bdf8,
+        #22c55e,
+        #a855f7,
+        #f97316,
+        #38bdf8
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 0.7),
+        0 10px 25px rgba(15, 23, 42, 0.9);
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      overflow: hidden;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-text-main {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .profile-text-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
     }
 
     label {
@@ -336,6 +396,7 @@
         0 0 0 1px rgba(148, 163, 184, 0.35);
       display: flex;
       flex-direction: column;
+      min-height: 420px;
     }
 
     .calendar-header {
@@ -412,8 +473,8 @@
       border-radius: 1.1rem;
       width: 100%;
       height: 100%;
-      min-height: 520px;
       border: 0;
+      display: block;
     }
 
     .calendar-footer {
@@ -431,10 +492,7 @@
         padding-inline: 1.1rem;
       }
       .calendar-card {
-        min-height: 420px;
-      }
-      iframe {
-        min-height: 420px;
+        min-height: 380px;
       }
     }
 
@@ -455,6 +513,23 @@
       .timezone-pill {
         margin-top: 0.25rem;
       }
+      .profile-block {
+        grid-template-columns: auto minmax(0, 1fr);
+      }
+    }
+
+    /* Extra mobile-specific tweaks via class */
+
+    body.is-mobile .calendar-card {
+      min-height: 320px;
+    }
+
+    body.is-mobile .container {
+      padding-top: 1rem;
+    }
+
+    body.is-mobile .timezone-pill {
+      font-size: 0.78rem;
     }
   </style>
 </head>
@@ -496,6 +571,22 @@
             Enter the family password to see when I’m on shift, on nights, or off.
           </p>
 
+          <!-- Profile block with your photo -->
+          <div class="profile-block">
+            <div class="profile-photo-ring">
+              <div class="profile-photo">
+                <!-- 🔧 Replace PROFILE_IMAGE_URL_HERE with a link to your photo -->
+                <img src="PROFILE_IMAGE_URL_HERE" alt="Photo of DJ" />
+              </div>
+            </div>
+            <div>
+              <div class="profile-text-main">Hi, it’s DJ 👋</div>
+              <div class="profile-text-sub">
+                This page is just for family so you can quickly check when I’m working or off.
+              </div>
+            </div>
+          </div>
+
           <form id="password-form" autocomplete="off">
             <label for="password">Family password</label>
             <input
@@ -519,7 +610,7 @@
           <div id="error" class="error"></div>
 
           <div class="footnote">
-            This page only shows my shifts. No personal details or event notes are visible.
+            This page only shows my shifts. No personal notes or sensitive details are visible.
           </div>
         </div>
       </section>
@@ -551,7 +642,9 @@
             </div>
 
             <div class="calendar-frame-wrapper">
+              <!-- 🔧 Replace YOUR_GOOGLE_CALENDAR_EMBED_URL_HERE with your embed URL -->
               <iframe
+                id="schedule-frame"
                 src="https://calendar.google.com/calendar/embed?src=e1b18059bc35529d296d6dbef5000ebc4465f94096e5152345365e506fd1e42b%40group.calendar.google.com&ctz=America%2FToronto"
                 frameborder="0"
                 scrolling="no"
@@ -559,7 +652,7 @@
             </div>
 
             <div class="calendar-footer">
-              • Click on a day to see exact shift times.  
+              • Tap or click on a day to see exact shift times.  
               • Calendar updates automatically whenever DJ updates his schedule.
             </div>
           </div>
@@ -569,9 +662,46 @@
   </div>
 
   <script>
+    // Device detection: set a class on <body> for mobile vs desktop.
+    (function detectDevice() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const isMobile =
+        /android/i.test(ua) ||
+        /iPhone|iPad|iPod/i.test(ua) ||
+        (window.innerWidth && window.innerWidth < 768);
+
+      if (isMobile) {
+        document.body.classList.add("is-mobile");
+      } else {
+        document.body.classList.add("is-desktop");
+      }
+    })();
+
+    // Responsive iframe height based on viewport & device type.
+    function resizeCalendarFrame() {
+      const frame = document.getElementById("schedule-frame");
+      if (!frame) return;
+
+      const isMobile = document.body.classList.contains("is-mobile");
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+
+      // Use a % of viewport height so it feels good on each device.
+      const desired = isMobile ? vh * 0.60 : vh * 0.78;
+
+      // Set a min/max guard so it doesn't go absurdly small or huge.
+      const clamped = Math.max(320, Math.min(desired, 900));
+
+      frame.style.height = clamped + "px";
+    }
+
+    window.addEventListener("load", resizeCalendarFrame);
+    window.addEventListener("resize", function () {
+      // Throttle a bit with requestAnimationFrame
+      window.requestAnimationFrame(resizeCalendarFrame);
+    });
+
     // Simple front-end password gate.
-    // Fine for casual family privacy, not for super sensitive data.
-    const PASSWORD = "beautyswitch";
+    const PASSWORD = "beautyswitch"; // 🔧 change this
 
     const form = document.getElementById("password-form");
     const passwordInput = document.getElementById("password");
@@ -582,6 +712,7 @@
     function unlock() {
       loginView.style.display = "none";
       calendarView.style.display = "block";
+      resizeCalendarFrame();
     }
 
     form.addEventListener("submit", function (e) {
