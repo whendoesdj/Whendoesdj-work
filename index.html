@@ -861,7 +861,7 @@
     const CONFIG = {
       PASSWORD: "beautyswitch",
 
-      // Calendar embed (you already set this)
+      // Calendar embed
       BASE_CALENDAR_URL:
         "https://calendar.google.com/calendar/embed?src=e1b18059bc35529d296d6dbef5000ebc4465f94096e5152345365e506fd1e42b%40group.calendar.google.com&ctz=America%2FToronto",
 
@@ -870,7 +870,7 @@
       PHOTO_PREFIX: "photo",
       PHOTO_EXT: ".jpeg",
 
-      // Typical month stats (manual, simple)
+      // Typical month stats (manual)
       STATS: {
         label: "Typical schedule",
         days: 12,
@@ -888,7 +888,7 @@
     /* Rotating photos */
 
     function getRandomPhotoPath() {
-      const count = Math.max(1, CONFIG.10 || 1);
+      const count = Math.max(1, CONFIG.PHOTO_COUNT || 1);
       const index = Math.floor(Math.random() * count) + 1; // 1..count
       return CONFIG.PHOTO_PREFIX + index + CONFIG.PHOTO_EXT;
     }
@@ -966,15 +966,14 @@
       }
     }
 
-    /* Weather: using Open-Meteo (no key required) */
+    /* Weather via Open-Meteo */
 
     function weatherIcon(code) {
-      // Simple mapping of weather code to emoji
-      if (code === 0) return "☀️"; // clear
+      if (code === 0) return "☀️";
       if (code === 1 || code === 2) return "🌤️";
       if (code === 3) return "☁️";
       if (code === 45 || code === 48) return "🌫️";
-      if (code >= 51 && code <= 67) return "🌦️"; // drizzle / rain
+      if (code >= 51 && code <= 67) return "🌦️";
       if (code >= 71 && code <= 77) return "❄️";
       if (code >= 80 && code <= 82) return "🌧️";
       if (code >= 95) return "⛈️";
@@ -995,8 +994,18 @@
     }
 
     function loadWeather() {
-      const { latitude, longitude, label } = CONFIG.WEATHER || {};
+      const weatherCfg = CONFIG.WEATHER;
+      if (!weatherCfg) return;
+      const { latitude, longitude, label } = weatherCfg;
       if (!latitude || !longitude) return;
+
+      const loading = document.getElementById("weather-loading");
+      const main = document.getElementById("weather-main");
+      const tempEl = document.getElementById("weather-temp");
+      const emojiEl = document.getElementById("weather-emoji");
+      const extra = document.getElementById("weather-extra");
+
+      if (!loading || !main || !tempEl || !emojiEl || !extra) return;
 
       const url =
         "https://api.open-meteo.com/v1/forecast?latitude=" +
@@ -1004,12 +1013,6 @@
         "&longitude=" +
         encodeURIComponent(longitude) +
         "&current_weather=true&timezone=America%2FToronto";
-
-      const loading = document.getElementById("weather-loading");
-      const main = document.getElementById("weather-main");
-      const tempEl = document.getElementById("weather-temp");
-      const emojiEl = document.getElementById("weather-emoji");
-      const extra = document.getElementById("weather-extra");
 
       fetch(url)
         .then((res) => res.json())
@@ -1021,22 +1024,21 @@
           const emoji = weatherIcon(cw.weathercode);
           const desc = weatherDescription(cw.weathercode);
 
-          if (loading) loading.style.display = "none";
-          if (main) main.style.display = "flex";
-          if (extra) extra.style.display = "block";
+          loading.style.display = "none";
+          main.style.display = "flex";
+          extra.style.display = "block";
 
-          if (tempEl) tempEl.textContent = temp + "°C";
-          if (emojiEl) emojiEl.textContent = emoji;
-          if (extra)
-            extra.textContent =
-              desc +
-              (label ? " • " + label : "") +
-              " • Wind " +
-              Math.round(cw.windspeed) +
-              " km/h";
+          tempEl.textContent = temp + "°C";
+          emojiEl.textContent = emoji;
+          extra.textContent =
+            desc +
+            (label ? " • " + label : "") +
+            " • Wind " +
+            Math.round(cw.windspeed) +
+            " km/h";
         })
         .catch(() => {
-          if (loading) loading.textContent = "Weather unavailable right now.";
+          loading.textContent = "Weather unavailable right now.";
         });
     }
 
@@ -1055,34 +1057,35 @@
       loadWeather();
     }
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const entered = passwordInput.value.trim();
+    if (form && passwordInput && errorDiv) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const entered = passwordInput.value.trim();
 
-      if (!entered) {
-        errorDiv.textContent = "Please enter the password.";
-        return;
-      }
+        if (!entered) {
+          errorDiv.textContent = "Please enter the password.";
+          return;
+        }
 
-      if (entered === CONFIG.PASSWORD) {
-        errorDiv.textContent = "";
-        unlock();
-      } else {
-        errorDiv.textContent = "Incorrect password. Try again.";
-        passwordInput.value = "";
-        passwordInput.focus();
-      }
-    });
+        if (entered === CONFIG.PASSWORD) {
+          errorDiv.textContent = "";
+          unlock();
+        } else {
+          errorDiv.textContent = "Incorrect password. Try again.";
+          passwordInput.value = "";
+          passwordInput.focus();
+        }
+      });
 
-    passwordInput.addEventListener("keyup", function (e) {
-      if (e.key === "Enter") {
-        form.dispatchEvent(new Event("submit"));
-      }
-    });
+      passwordInput.addEventListener("keyup", function (e) {
+        if (e.key === "Enter") {
+          form.dispatchEvent(new Event("submit"));
+        }
+      });
+    }
 
     window.addEventListener("load", function () {
-      // show a random photo on login view too
-      setPhotos();
+      setPhotos(); // show a random photo on login
     });
 
     window.addEventListener("resize", function () {
