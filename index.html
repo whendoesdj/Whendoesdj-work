@@ -12,7 +12,6 @@
       --card: #020617;
       --accent: #38bdf8;
       --accent2: #22c55e;
-      --accent-soft: rgba(56, 189, 248, 0.16);
       --text: #e5e7eb;
       --muted: #9ca3af;
       --danger: #fb7185;
@@ -29,7 +28,6 @@
       margin: 0;
       min-height: 100vh;
       display: flex;
-      align-items: stretch;
       justify-content: center;
       background:
         radial-gradient(circle at top left, #0f172a, #020617 55%),
@@ -44,7 +42,6 @@
       padding: 1.25rem 1.5rem 1.75rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       gap: 1.5rem;
     }
 
@@ -107,13 +104,17 @@
     }
 
     main {
-      display: grid;
-      grid-template-columns: minmax(0, 400px) minmax(0, 1.4fr);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       gap: 1.5rem;
-      align-items: stretch;
     }
 
-    .card {
+    /* LOGIN VIEW */
+
+    #login-view {
+      width: 100%;
+      max-width: 440px;
       background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 65%),
                   radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.18), transparent 55%),
                   #020617;
@@ -124,9 +125,10 @@
         0 0 0 1px rgba(148, 163, 184, 0.3);
       position: relative;
       overflow: hidden;
+      margin-inline: auto;
     }
 
-    .card::before {
+    #login-view::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -163,10 +165,6 @@
       color: var(--muted);
       background: rgba(15, 23, 42, 0.75);
       border: 1px solid rgba(148, 163, 184, 0.45);
-    }
-
-    .badge span.emoji {
-      font-size: 0.85rem;
     }
 
     .mini-indicator {
@@ -207,8 +205,6 @@
       color: var(--muted);
       max-width: 340px;
     }
-
-    /* Profile block */
 
     .profile-block {
       display: grid;
@@ -373,24 +369,114 @@
       opacity: 0.85;
     }
 
-    /* Calendar pane */
+    /* SCHEDULE VIEW (after login) */
 
-    #calendar-view {
+    #schedule-view {
       display: none;
+      width: 100%;
     }
 
-    .calendar-shell {
-      height: 100%;
+    .schedule-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+      gap: 1.25rem;
+      align-items: stretch;
+      margin-top: 0.5rem;
+    }
+
+    .hero-photo-card {
+      background: rgba(2, 6, 23, 0.96);
+      border-radius: 1.5rem;
+      padding: 0.9rem;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
+      gap: 0.6rem;
+    }
+
+    .hero-photo-wrap {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #020617;
+    }
+
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo-caption {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-copy-card {
+      background: rgba(2, 6, 23, 0.96);
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.3rem 1.05rem;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .schedule-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .schedule-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .legend-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #38bdf8;
+    }
+    .legend-dot.days { background: #22c55e; }
+    .legend-dot.nights { background: #a855f7; }
+    .legend-dot.off { background: #64748b; }
+
+    .schedule-note {
+      font-size: 0.78rem;
+      color: var(--muted);
     }
 
     .calendar-card {
-      flex: 1;
+      margin-top: 1rem;
       background: rgba(2, 6, 23, 0.98);
       border-radius: 1.5rem;
-      padding: 1.1rem 1rem 1rem;
+      padding: 1rem;
       box-shadow:
         0 24px 60px rgba(0, 0, 0, 0.9),
         0 0 0 1px rgba(148, 163, 184, 0.35);
@@ -405,7 +491,7 @@
       align-items: baseline;
       gap: 0.75rem;
       margin-bottom: 0.5rem;
-      padding-inline: 0.35rem;
+      padding-inline: 0.15rem;
     }
 
     .calendar-title {
@@ -413,52 +499,12 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #e5e7eb;
     }
 
     .calendar-note {
       font-size: 0.78rem;
       color: var(--muted);
       text-align: right;
-    }
-
-    .legend-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding-inline: 0.35rem;
-      margin-bottom: 0.4rem;
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
-
-    .legend-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.18rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .legend-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .legend-dot.nights {
-      background: #a855f7;
-    }
-
-    .legend-dot.days {
-      background: #22c55e;
-    }
-
-    .legend-dot.off {
-      background: #64748b;
     }
 
     .calendar-frame-wrapper {
@@ -470,7 +516,6 @@
     }
 
     iframe {
-      border-radius: 1.1rem;
       width: 100%;
       height: 100%;
       border: 0;
@@ -481,55 +526,52 @@
       margin-top: 0.4rem;
       font-size: 0.75rem;
       color: var(--muted);
-      padding-inline: 0.4rem;
+      padding-inline: 0.2rem;
     }
 
+    /* STATE: unlocked */
+
+    body.unlocked #login-view {
+      display: none;
+    }
+
+    body.unlocked #schedule-view {
+      display: block;
+    }
+
+    /* RESPONSIVE */
+
     @media (max-width: 960px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
-      }
       .container {
         padding-inline: 1.1rem;
       }
-      .calendar-card {
-        min-height: 380px;
+
+      .schedule-hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-photo-wrap img {
+        max-height: 260px;
       }
     }
 
     @media (max-width: 600px) {
-      .card {
-        padding-inline: 1.2rem;
-      }
-      h1 {
-        font-size: 1.4rem;
-      }
-      .subtitle {
-        font-size: 0.9rem;
-      }
       .top-bar {
         flex-direction: column;
         align-items: flex-start;
       }
+
       .timezone-pill {
-        margin-top: 0.25rem;
+        font-size: 0.78rem;
       }
-      .profile-block {
-        grid-template-columns: auto minmax(0, 1fr);
+
+      #login-view {
+        padding-inline: 1.2rem;
       }
-    }
 
-    /* Extra mobile-specific tweaks via class */
-
-    body.is-mobile .calendar-card {
-      min-height: 320px;
-    }
-
-    body.is-mobile .container {
-      padding-top: 1rem;
-    }
-
-    body.is-mobile .timezone-pill {
-      font-size: 0.78rem;
+      .calendar-card {
+        padding-inline: 0.85rem;
+      }
     }
   </style>
 </head>
@@ -550,12 +592,12 @@
     </header>
 
     <main>
-      <!-- Left: Password card -->
-      <section id="login-view" class="card">
+      <!-- LOGIN VIEW -->
+      <section id="login-view">
         <div class="card-inner">
           <div class="badge-row">
             <div class="badge">
-              <span class="emoji">🔒</span>
+              <span>🔒</span>
               <span>Family only</span>
             </div>
             <div class="mini-indicator">
@@ -571,12 +613,10 @@
             Enter the family password to see when I’m on shift, on nights, or off.
           </p>
 
-          <!-- Profile block with your photo -->
           <div class="profile-block">
             <div class="profile-photo-ring">
               <div class="profile-photo">
-                <!-- 🔧 Replace PROFILE_IMAGE_URL_HERE with a link to your photo -->
-                <img src="https://raw.githubusercontent.com/whendoesdj/whendoesdj-work/main/dj.jpeg" alt="Photo of DJ" />
+                <img id="profile-photo-small" src="" alt="Photo of DJ" />
               </div>
             </div>
             <div>
@@ -615,15 +655,22 @@
         </div>
       </section>
 
-      <!-- Right: Calendar -->
-      <section id="calendar-view">
-        <div class="calendar-shell">
-          <div class="calendar-card">
-            <div class="calendar-header">
-              <div class="calendar-title">DJ’s Work Calendar</div>
-              <div class="calendar-note">
-                Read-only • Automatically synced from Google Calendar
-              </div>
+      <!-- SCHEDULE VIEW -->
+      <section id="schedule-view">
+        <div class="schedule-hero">
+          <aside class="hero-photo-card">
+            <div class="hero-photo-wrap">
+              <img id="profile-photo-large" src="" alt="Photo of DJ" />
+            </div>
+            <div class="hero-photo-caption">
+              Updated automatically from my work calendar. If something looks off, text me.
+            </div>
+          </aside>
+
+          <section class="hero-copy-card">
+            <div class="schedule-title">DJ’s Work Schedule</div>
+            <div class="schedule-subtitle">
+              Quick way for family to see when I’m on days, nights, or off. Times are pulled directly from my Google Calendar.
             </div>
 
             <div class="legend-row">
@@ -641,78 +688,94 @@
               </div>
             </div>
 
-            <div class="calendar-frame-wrapper">
-              <!-- 🔧 Replace YOUR_GOOGLE_CALENDAR_EMBED_URL_HERE with your embed URL -->
-              <iframe
-                id="schedule-frame"
-                src="https://calendar.google.com/calendar/embed?src=e1b18059bc35529d296d6dbef5000ebc4465f94096e5152345365e506fd1e42b%40group.calendar.google.com&ctz=America%2FToronto"
-                frameborder="0"
-                scrolling="no"
-              ></iframe>
+            <div class="schedule-note">
+              • On desktop, you’ll see a full month view.<br />
+              • On phones, the calendar switches to an easier-to-read agenda list.
             </div>
-
-            <div class="calendar-footer">
-              • Tap or click on a day to see exact shift times.  
-              • Calendar updates automatically whenever DJ updates his schedule.
-            </div>
-          </div>
+          </section>
         </div>
+
+        <section class="calendar-card">
+          <div class="calendar-header">
+            <div class="calendar-title">Work calendar</div>
+            <div class="calendar-note">Read-only • Direct from Google Calendar</div>
+          </div>
+
+          <div class="calendar-frame-wrapper">
+            <iframe
+              id="schedule-frame"
+              src=""
+              frameborder="0"
+              scrolling="no"
+            ></iframe>
+          </div>
+
+          <div class="calendar-footer">
+            Tap or click any event to see the exact start and end times.
+          </div>
+        </section>
       </section>
     </main>
   </div>
 
   <script>
-    // Device detection: set a class on <body> for mobile vs desktop.
-    (function detectDevice() {
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-      const isMobile =
-        /android/i.test(ua) ||
-        /iPhone|iPad|iPod/i.test(ua) ||
-        (window.innerWidth && window.innerWidth < 768);
+    // ---- CONFIG: pulled from your current setup, no need to change unless you want to ----
+    const CONFIG = {
+      PASSWORD: "beautyswitch",
+      PROFILE_IMAGE_URL: "https://raw.githubusercontent.com/whendoesdj/whendoesdj-work/main/dj.jpeg",
+      BASE_CALENDAR_URL: "https://calendar.google.com/calendar/embed?src=e1b18059bc35529d296d6dbef5000ebc4465f94096e5152345365e506fd1e42b%40group.calendar.google.com&ctz=America%2FToronto"
+    };
 
-      if (isMobile) {
-        document.body.classList.add("is-mobile");
-      } else {
-        document.body.classList.add("is-desktop");
+    // Apply config (image + calendar URLs)
+    function applyConfig() {
+      const small = document.getElementById("profile-photo-small");
+      const large = document.getElementById("profile-photo-large");
+      const frame = document.getElementById("schedule-frame");
+
+      if (CONFIG.PROFILE_IMAGE_URL) {
+        if (small) small.src = CONFIG.PROFILE_IMAGE_URL;
+        if (large) large.src = CONFIG.PROFILE_IMAGE_URL;
       }
-    })();
 
-    // Responsive iframe height based on viewport & device type.
+      if (frame && CONFIG.BASE_CALENDAR_URL) {
+        const isMobile = window.innerWidth < 768;
+        let url = CONFIG.BASE_CALENDAR_URL;
+
+        // Always set a dark background to blend with the site
+        const hasQuery = url.includes("?");
+        const join = hasQuery ? "&" : "?";
+        url += join + "bgcolor=%230b1120";
+
+        // Mode: agenda on mobile, month on desktop
+        url += "&mode=" + (isMobile ? "AGENDA" : "MONTH");
+
+        frame.src = url;
+      }
+    }
+
+    // Resize iframe height based on viewport
     function resizeCalendarFrame() {
       const frame = document.getElementById("schedule-frame");
       if (!frame) return;
 
-      const isMobile = document.body.classList.contains("is-mobile");
       const vh = window.innerHeight || document.documentElement.clientHeight;
+      const isNarrow = window.innerWidth < 768;
 
-      // Use a % of viewport height so it feels good on each device.
-      const desired = isMobile ? vh * 0.60 : vh * 0.78;
-
-      // Set a min/max guard so it doesn't go absurdly small or huge.
-      const clamped = Math.max(320, Math.min(desired, 900));
+      const desired = isNarrow ? vh * 0.65 : vh * 0.8;
+      const clamped = Math.max(360, Math.min(desired, 900));
 
       frame.style.height = clamped + "px";
     }
 
-    window.addEventListener("load", resizeCalendarFrame);
-    window.addEventListener("resize", function () {
-      // Throttle a bit with requestAnimationFrame
-      window.requestAnimationFrame(resizeCalendarFrame);
-    });
-
-    // Simple front-end password gate.
-    const PASSWORD = "beautyswitch"; // 🔧 change this
-
+    // Simple front-end password gate
     const form = document.getElementById("password-form");
     const passwordInput = document.getElementById("password");
     const errorDiv = document.getElementById("error");
-    const loginView = document.getElementById("login-view");
-    const calendarView = document.getElementById("calendar-view");
 
     function unlock() {
-      loginView.style.display = "none";
-      calendarView.style.display = "block";
+      document.body.classList.add("unlocked");
       resizeCalendarFrame();
+      applyConfig(); // ensure correct calendar mode for current viewport once visible
     }
 
     form.addEventListener("submit", function (e) {
@@ -724,7 +787,7 @@
         return;
       }
 
-      if (entered === PASSWORD) {
+      if (entered === CONFIG.PASSWORD) {
         errorDiv.textContent = "";
         unlock();
       } else {
@@ -738,6 +801,15 @@
       if (e.key === "Enter") {
         form.dispatchEvent(new Event("submit"));
       }
+    });
+
+    window.addEventListener("load", function () {
+      applyConfig(); // sets images + initial calendar URL
+      resizeCalendarFrame();
+    });
+
+    window.addEventListener("resize", function () {
+      window.requestAnimationFrame(resizeCalendarFrame);
     });
   </script>
 </body>
